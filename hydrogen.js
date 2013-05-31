@@ -2,14 +2,22 @@
     'use strict';
 
     var h, // public functions
-        hasModule = (typeof module !== 'undefined' && module.exports);
+        hasModule = (typeof exports !== 'undefined');
 
-    function extend (target, props) {
+    function extend(target, props) {
         for(var key in props) {
             if (props.hasOwnProperty(key)) {
                 target[key] = props[key];
             }
         }
+    }
+
+    function construct(obj, args) {
+        function F() {
+            return obj.apply(this, args);
+        }
+        F.prototype = obj.prototype;
+        return new F();
     }
 
     h = {
@@ -40,7 +48,7 @@
             extend(Obj.prototype, props);
 
             Obj.makeInst = function makeInst() {
-                return new Obj();
+                return construct(Obj, arguments);
             };
 
             return h;
@@ -48,7 +56,7 @@
 
         attach: function(Obj, closure) {
             Obj.makeInst = function makeInst() {
-                var instance = new Obj();
+                var instance = construct(Obj, arguments);
 
                 var closureProps = closure.call(instance);
                 extend(instance, closureProps);

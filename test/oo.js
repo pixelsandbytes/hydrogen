@@ -50,6 +50,30 @@ describe('#create', function() {
 
     });
 
+    describe('Simple object with constructor parameters', function() {
+        var Base;
+
+        before(function() {
+            Base = function(val1, val2) {
+                this.val1 = val1;
+                this.val2 = val2;
+            };
+            h.create(Base, {});
+        });
+
+        it('should be able to pass parameters on to the constructor when using new', function() {
+            var obj = new Base('foo', 'bar');
+            obj.val1.should.eql('foo');
+            obj.val2.should.eql('bar');
+        });
+
+        it('should be able to pass parameters on to the constructor when using makeInst()', function() {
+            var obj = Base.makeInst('foo', 'bar');
+            obj.val1.should.eql('foo');
+            obj.val2.should.eql('bar');
+        });
+    });
+
     describe('Multiple instances', function() {
         var Base;
 
