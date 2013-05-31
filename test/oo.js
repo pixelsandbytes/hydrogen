@@ -230,8 +230,7 @@ describe('#attach', function() {
 
         before(function() {
             Base = function() {};
-            h.create(Base, {})
-            .attach(Base, function() {
+            h.attach(Base, function() {
                 var privateVar = 'A private variable';
 
                 return {
