@@ -27,8 +27,8 @@
 
             if (SuperObj) {
                 Obj.super = SuperObj;
-                if ('function' === typeof SuperObj.inst) {
-                    superInst = SuperObj.inst();
+                if ('function' === typeof SuperObj.makeInst) {
+                    superInst = SuperObj.makeInst();
                 } else {
                     superInst = new SuperObj();
                 }
@@ -37,7 +37,7 @@
 
             extend(Obj.prototype, props);
 
-            Obj.inst = function inst() {
+            Obj.makeInst = function makeInst() {
                 return new Obj();
             };
 
@@ -45,7 +45,7 @@
         },
 
         attach: function(Obj, closure) {
-            Obj.inst = function inst() {
+            Obj.makeInst = function makeInst() {
                 var instance = new Obj();
 
                 var closureProps = closure.call(instance);
