@@ -26,13 +26,15 @@
             }
 
             if (SuperObj) {
-                Obj.super = SuperObj;
                 if ('function' === typeof SuperObj.makeInst) {
                     superInst = SuperObj.makeInst();
                 } else {
                     superInst = new SuperObj();
                 }
                 Obj.prototype = superInst;
+                Obj.prototype.super = {
+                    constructor: SuperObj
+                };
             }
 
             extend(Obj.prototype, props);

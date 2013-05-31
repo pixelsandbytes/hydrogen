@@ -65,10 +65,10 @@ describe('#create', function() {
         it('should remain separate', function() {
             var obj1 = new Base();
             var obj2 = new Base();
-            obj1.someVar = 'lorem';
-            obj2.someVar = 'ipsum';
-            obj1.someVar.should.eql('lorem');
-            obj2.someVar.should.eql('ipsum');
+            obj1.someVar = 'foo';
+            obj2.someVar = 'bar';
+            obj1.someVar.should.eql('foo');
+            obj2.someVar.should.eql('bar');
         });
     });
 
@@ -85,6 +85,25 @@ describe('#create', function() {
             var obj = new Derived();
             obj.should.be.an.instanceOf(Base);
             obj.should.be.an.instanceOf(Derived);
+        });
+    });
+
+    describe('Extend object with constructor parameters', function() {
+        var Base, Derived;
+
+        before(function() {
+            Base = function(value) {
+                this.value = value;
+            };
+            Derived = function(value) {
+                this.super.constructor.call(this, value);
+            };
+            h.create(Derived, Base, {});
+        });
+
+        it('should be able to pass parameters on to the base object constructor', function() {
+            var obj = new Derived('foo');
+            obj.value.should.eql('foo');
         });
     });
 
@@ -135,7 +154,7 @@ describe('#create', function() {
                 someVar: 'Overridden variable',
 
                 someFunc: function() {
-                    return 'Overridden function'
+                    return 'Overridden function';
                 }
 
             });
@@ -180,6 +199,7 @@ describe('#create', function() {
 });
 
 describe('#attach', function() {
+    'use strict';
 
     describe('Simple closure', function() {
         var Base;
@@ -198,7 +218,7 @@ describe('#attach', function() {
                     set: function(value) {
                         privateVar = value;
                     }
-                }
+                };
             });
         });
 
@@ -210,10 +230,10 @@ describe('#attach', function() {
         it('should keep closures separate for separate instances', function() {
             var obj1 = Base.makeInst();
             var obj2 = Base.makeInst();
-            obj1.set('lorem');
-            obj2.set('ipsum');
-            obj1.get().should.eql('lorem');
-            obj2.get().should.eql('ipsum');
+            obj1.set('foo');
+            obj2.set('bar');
+            obj1.get().should.eql('foo');
+            obj2.get().should.eql('bar');
         });
     });
 
@@ -230,7 +250,7 @@ describe('#attach', function() {
                     get: function() {
                         return this.someVar;
                     }
-                }
+                };
             });
         });
 
@@ -313,7 +333,7 @@ describe('#attach', function() {
             h.create(Derived, Base, {})
             .attach(Derived, function() {
                 var anotherPrivateVar = 'Private variable in override';
-                
+
                 return {
                     get: function() {
                         return anotherPrivateVar;
