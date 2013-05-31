@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<head>
+    <title>Example Usage</title>
+    <style>
+        body {
+            margin: 1em;
+            font: 14px/1.5em Helvetica, Arial, Verdana, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>hydrogen</h1>
+
+    <section>
+        <h2>Inheritance</h2>
+
+<pre class="code">
+function Watch(color) {
+    this.color = color;
+}
+h.create(Watch, {
+    getLabel: function() {
+        return 'Watch';
+    },
+    getLongLabel: function() {
+        return this.getLabel() + ' (' + this.color + ')';
+    }
+});
+
+function AnalogWatch(color, band) {
+    this.super.constructor.call(this, color);
+    this.band = band;
+}
+h.create(AnalogWatch, Watch, {
+    getLabel: function() {
+        return 'Analog Watch';
+    }
+});
+</pre>
+
+        <div class="output" id="inheritance"></div>
+    </section>
+
+    <script type="text/javascript">
+        function println(blockId, string) {
+            var newDiv = document.createElement('div');
+            var newText = document.createTextNode(string);
+            newDiv.appendChild(newText);
+            var outputBlock = document.getElementById(blockId);
+            outputBlock.appendChild(newDiv);
+        }
+    </script>
+
+    <script type="text/javascript" src="../hydrogen.js"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+
+            /***** Inheritance *****/
+
+            function Watch(color) {
+                this.color = color;
+            }
+            h.create(Watch, {
+                getLabel: function() {
+                    return 'Watch';
+                },
+                getLongLabel: function() {
+                    return this.getLabel() + ' (' + this.color + ')';
+                }
+            });
+
+            function AnalogWatch(color, band) {
+                this.super.constructor.call(this, color);
+                this.band = band;
+            }
+            h.create(AnalogWatch, Watch, {
+                getLabel: function() {
+                    return 'Analog Watch';
+                }
+            });
+
+            var myAnalogWatch = AnalogWatch.makeInst('white', 'leather');
+            println('inheritance', "var myAnalogWatch = AnalogWatch.makeInst('white', 'leather');");
+            println('inheritance', 'myAnalogWatch.color; // ' + myAnalogWatch.color);
+            println('inheritance', 'myAnalogWatch.band; // ' + myAnalogWatch.band);
+            println('inheritance', 'myAnalogWatch.getLabel(); // ' + myAnalogWatch.getLabel());
+            println('inheritance', 'myAnalogWatch.getLongLabel(); // ' + myAnalogWatch.getLongLabel());
+        }
+    </script>
+</body>
+</html>
