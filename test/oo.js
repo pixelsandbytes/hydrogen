@@ -371,4 +371,33 @@ describe('#attach', function() {
         });
     });
 
+    describe('Closure is not a function', function() {
+        var Base;
+
+        before(function() {
+            Base = function() {};
+        });
+
+        it('should throw an error if closure is undefined', function() {
+            var tmp = function() {
+                h.attach(function() {});
+            };
+            tmp.should.throwError();
+        });
+
+        it('should throw an error if closure is a string', function() {
+            var tmp = function() {
+                h.attach(Base, 'Not a function');
+            };
+            tmp.should.throwError();
+        });
+
+        it('should throw an error if closure is null', function() {
+            var tmp = function() {
+                h.attach(Base, null);
+            };
+            tmp.should.throwError();
+        });
+    });
+
 });

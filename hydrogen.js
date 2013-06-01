@@ -55,6 +55,10 @@
         },
 
         attach: function(Obj, closure) {
+            if ('function' !== typeof closure) {
+                throw new Error('closure is of type ' + (typeof closure) + ', expected to be a function');
+            }
+
             Obj.makeInst = function makeInst() {
                 var instance = construct(Obj, arguments);
 
