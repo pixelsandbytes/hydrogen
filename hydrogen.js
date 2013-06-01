@@ -12,7 +12,7 @@
         }
     }
 
-    function construct(obj, args) {
+    function instantiate(obj, args) {
         function F() {
             return obj.apply(this, args);
         }
@@ -48,7 +48,7 @@
             extend(Obj.prototype, props);
 
             Obj.makeInst = function makeInst() {
-                return construct(Obj, arguments);
+                return instantiate(Obj, arguments);
             };
 
             return h;
@@ -60,7 +60,7 @@
             }
 
             Obj.makeInst = function makeInst() {
-                var instance = construct(Obj, arguments);
+                var instance = instantiate(Obj, arguments);
 
                 var closureProps = closure.call(instance);
                 extend(instance, closureProps);
