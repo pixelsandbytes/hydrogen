@@ -13,7 +13,7 @@ A minimal library for object-oriented JavaScript development.
     <script type="text/javascript" src="path/to/hydrogen.js"></script>
 
 ## Usage Examples
-_(`sample/index.html` contains the examples below as well as a few more.)_
+See `sample/index.html` for the examples below as well as a few more.
 
 ### Inheritance
 `h.create()` can be used to extend one prototypical object from another.
@@ -51,7 +51,7 @@ _(`sample/index.html` contains the examples below as well as a few more.)_
     vader.getDescription(); // Darth Vader (a.k.a. Anakin Skywalker) is from "Star Wars". Mwahahaha!
 
 ### Private Variables
-`h.attach()` can be used to add a closure to an object, which can be used to contain private variables and functions.
+`h.attach()` adds a closure to an object, which can be used to contain private variables and functions.
 
     function Weapon(name) {
         this.name = name;
