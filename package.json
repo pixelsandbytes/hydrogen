@@ -2,9 +2,10 @@
     "name": "hydrogen",
     "version": "0.0.1",
     "devDependencies": {
+        "mocha": "~1.10.0",
         "should": "~1.2.2"
     },
     "scripts": {
-        "test": "mocha"
+        "test": "make test"
     }
 }
