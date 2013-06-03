@@ -2,6 +2,8 @@
 
 A minimal library for object-oriented JavaScript development.
 
+[![Build Status](https://travis-ci.org/pixelsandbytes/hydrogen.png?branch=master)](https://travis-ci.org/pixelsandbytes/hydrogen)
+
 ## How To Use
 
 ### Node.js
