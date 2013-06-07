@@ -15,7 +15,7 @@ A minimal library for object-oriented JavaScript development.
     <script type="text/javascript" src="path/to/hydrogen.js"></script>
 
 ## Usage Examples
-See [sample/index.html](blob/master/sample/index.html) for the examples below plus a few more.
+See [sample/index.html](sample/index.html) for the examples below plus a few more.
 
 ### Inheritance
 `h.create()` can be used to create a prototypical object, or extend one prototypical object from another.
@@ -79,4 +79,4 @@ See [sample/index.html](blob/master/sample/index.html) for the examples below pl
     bullwhip.addUser('Catwoman');
     bullwhip.getUsers(); // Indiana Jones,Catwoman
 
-Properties returned by attached closure can be overridden in a child object via either `h.create()` or `h.attach()`. See [sample/index.html](blob/master/sample/index.html) for examples.
+Properties returned by attached closure can be overridden in a child object via either `h.create()` or `h.attach()`. See [sample/index.html](sample/index.html) for examples.
