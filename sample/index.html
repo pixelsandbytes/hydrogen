@@ -380,7 +380,7 @@ h.create(Superhero, Hero, {
             }
             h.create(Superhero, Hero, {
                 getDescription: function() {
-                        return this.name + ' is hated by ' + this.getEnemies().join(', ') + '; is also the arch-enemy of ' + this.getSuperEnemies().join(', ');
+                    return this.name + ' is hated by ' + this.getEnemies().join(', ') + '; is also the arch-enemy of ' + this.getSuperEnemies().join(', ');
                 }
             })
             .attach(Superhero, function() {
