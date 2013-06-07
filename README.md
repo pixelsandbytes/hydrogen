@@ -15,10 +15,10 @@ A minimal library for object-oriented JavaScript development.
     <script type="text/javascript" src="path/to/hydrogen.js"></script>
 
 ## Usage Examples
-See `sample/index.html` for the examples below as well as a few more.
+See [sample/index.html](blob/master/sample/index.html) for the examples below plus a few more.
 
 ### Inheritance
-`h.create()` can be used to extend one prototypical object from another.
+`h.create()` can be used to create a prototypical object, or extend one prototypical object from another.
 
     function Character(name, mediumName, otherName) {
         this.name = name;
@@ -48,7 +48,9 @@ See `sample/index.html` for the examples below as well as a few more.
         }
     });
 
-
+    var mcclane = Character.makeInst('John McClane', 'Die Hard');
+    mcclane.name; // John McClane
+    mcclane.getDescription(); // John McClane is from "Die Hard"
     var vader = Villain.makeInst('Darth Vader', 'Star Wars', 'Anakin Skywalker', true);
     vader.getDescription(); // Darth Vader (a.k.a. Anakin Skywalker) is from "Star Wars". Mwahahaha!
 
@@ -76,3 +78,5 @@ See `sample/index.html` for the examples below as well as a few more.
     bullwhip.addUser('Indiana Jones');
     bullwhip.addUser('Catwoman');
     bullwhip.getUsers(); // Indiana Jones,Catwoman
+
+Properties returned by attached closure can be overridden in a child object via either `h.create()` or `h.attach()`. See [sample/index.html](blob/master/sample/index.html) for examples.
