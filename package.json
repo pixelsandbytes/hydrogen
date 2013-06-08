@@ -7,7 +7,7 @@
         "should": "~1.2.2"
     },
     "scripts": {
-        "hint": "jshint hydrogen.js test/ --config jshint.json",
+        "hint": "make hint",
         "test": "make test"
     }
 }
