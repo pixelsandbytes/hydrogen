@@ -1,9 +1,9 @@
 hint:
-	@.node_modules/.bin/jshint hydrogen.js test/ --config jshint.json
+	@./node_modules/.bin/jshint hydrogen.js test/ --config jshint.json
 
 test:
 	@./node_modules/.bin/mocha
 
-travis: hint test
+release: hint test
 
-.PHONY: hint test travis
+.PHONY: hint test release
