@@ -4,4 +4,6 @@ hint:
 test:
 	@./node_modules/.bin/mocha
 
-.PHONY: hint test
+travis: hint test
+
+.PHONY: hint test travis
