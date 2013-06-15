@@ -8,7 +8,13 @@ A minimal library for object-oriented JavaScript development.
 
 ### Node.js
 
-    var h = require('path/to/hydrogen.js');
+Add `hydrogen` to your dependencies, then run:
+
+    npm install
+
+Then add:
+
+    var h = require('hydrogen');
 
 ### Browser
 
