@@ -1,6 +1,25 @@
 {
     "name": "hydrogen",
-    "version": "0.0.1",
+    "version": "0.1.0",
+    "author": "Pixels & Bytes <pxandbytes@gmail.com>",
+    "description": "A minimal library for object-oriented JavaScript development",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/pixelsandbytes/hydrogen.git"
+    },
+    "main": "./lib/hydrogen.js",
+    "keywords": [
+        "class",
+        "inheritance",
+        "inherit",
+        "javascript",
+        "js",
+        "object",
+        "object-oriented",
+        "oo",
+        "override",
+        "private"
+    ],
     "devDependencies": {
         "grunt": "~0.4.1",
         "grunt-cli": "~0.1.9",
@@ -8,5 +27,9 @@
         "grunt-contrib-uglify": "~0.2.2",
         "grunt-simple-mocha": "~0.4.0",
         "should": "~1.2.2"
-    }
+    },
+    "engines": {
+        "node": ">=0.8"
+    },
+    "license": "MIT"
 }

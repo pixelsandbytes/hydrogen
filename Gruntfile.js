@@ -8,7 +8,7 @@ module.exports = function(grunt) {
             options: grunt.file.readJSON('jshint.json'),
             all: {
                 options: {
-                    ignores: ['node_modules/**/*.js', 'src/<%= pkg.name %>.min.js']
+                    ignores: ['node_modules/**/*.js', 'lib/<%= pkg.name %>.min.js']
                 },
                 src: ['**/*.js']
             }
@@ -30,7 +30,7 @@ module.exports = function(grunt) {
             },
             build: {
                 files: {
-                    'src/<%= pkg.name %>.min.js': ['src/<%= pkg.name %>.js']
+                    'lib/<%= pkg.name %>.min.js': ['lib/<%= pkg.name %>.js']
                 }
             }
         }

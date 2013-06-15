@@ -1,7 +1,7 @@
 /* jshint unused: false */
 var path =      require('path'),
     should =    require('should'),
-    h =         require(path.resolve(__dirname, '../src/hydrogen.js'));
+    h =         require(path.resolve(__dirname, '../lib/hydrogen.js'));
 
 /* global describe, before, it */
 describe('#create', function() {
