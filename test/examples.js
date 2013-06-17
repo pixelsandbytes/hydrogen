@@ -236,3 +236,87 @@ describe('Overriding Attached Properties', function() {
             'is also the arch-enemy of Mandarin, Iron Monger');
     });
 });
+
+describe('Checking Interfaces', function() {
+    'use strict';
+
+    var IMovie;
+
+    before(function() {
+        IMovie = {
+            type: 'object',
+            contents: {
+                title: {
+                    type: 'string'
+                },
+                details: {
+                    type: 'object',
+                    contents: {
+                        summary: {type: 'string'},
+                        year: {type: 'number'}
+                    }
+                },
+                play: {
+                    type: 'function',
+                    minArity: 2
+                }
+            }
+        };
+    });
+
+    it('should match an object with the exact same public properties', function() {
+        var savingPrivateRyan = {
+            title: 'Saving Private Ryan',
+            details: {
+                summary: 'Following the Normandy Landings, a group of U.S. soldiers go behind enemy lines ' +
+                    'to retrieve a paratrooper whose brothers have been killed in action.',
+                year: 1998
+            },
+            play: function(startTime, fullScreen) {}
+        };
+        h.checkImpl(savingPrivateRyan, IMovie).should.equal(true);
+    });
+
+    it('should match an object with the same public properties plus more', function() {
+        var minorityReport = {
+            title: 'Minority Report',
+            details: {
+                summary: 'In a future where a special police unit is able to arrest murderers before ' +
+                    'they commit their crimes, an officer from that unit is himself accused of a future murder.',
+                year: 2002,
+                cast: [
+                    'Tom Cruise',
+                    'Colin Farrell',
+                    'Samantha Morton',
+                    'Max von Sydow'
+                ]
+            },
+            play: function(startTime, fullScreen, showSubtitles) {}
+        };
+        h.checkImpl(minorityReport, IMovie).should.equal(true);
+    });
+
+    it('should not match an object with different public properties', function() {
+        var warOfTheWorlds = {
+            title: 'War of the Worlds',
+            details: {
+                summary: 'As Earth is invaded by alien tripod fighting machines, one family fights for survival.',
+                year: 2005
+            },
+            play: function(fullScreen) {}
+        };
+        h.checkImpl(warOfTheWorlds, IMovie).should.eql('At key ["play"]: ' +
+            'Function does not accept at least 2 parameters');
+    });
+
+    it('should not match an object with different nested public properties', function() {
+        var warHorse = {
+            title: 'War Horse',
+            details: {
+                year: 2011
+            },
+            play: function(startTime, fullScreen) {}
+        };
+        h.checkImpl(warHorse, IMovie).should.eql('At key ["details"]: At key ["summary"]: Value is not a string');
+    });
+});

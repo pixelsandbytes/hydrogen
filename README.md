@@ -21,7 +21,7 @@ Then add:
     <script type="text/javascript" src="path/to/hydrogen.js"></script>
 
 ## Usage Examples
-See [sample/index.html](sample/index.html) for the examples below plus a few more.
+See [examples][examples-link] for the ones below plus more.
 
 ### Inheritance
 `h.create()` can be used to create a prototypical object, or extend one prototypical object from another.
@@ -85,4 +85,59 @@ See [sample/index.html](sample/index.html) for the examples below plus a few mor
     bullwhip.addUser('Catwoman');
     bullwhip.getUsers(); // Indiana Jones,Catwoman
 
-Properties returned by attached closure can be overridden in a child object via either `h.create()` or `h.attach()`. See [sample/index.html](sample/index.html) for examples.
+Properties returned by an attached closure can be overridden in a child object via either `h.create()` or `h.attach()`, see [examples][examples-link].
+
+### Checking Interfaces
+`h.checkImpl()` checks a value against an "interface" and determines if the value is a valid implementation of the interface.
+
+    var IMovie = {
+        type: 'object',
+        contents: {
+            title: {
+                type: 'string'
+            },
+            details: {
+                type: 'object',
+                contents: {
+                    summary: {type: 'string'},
+                    year: {type: 'number'}
+                }
+            },
+            play: {
+                type: 'function',
+                minArity: 2
+            }
+        }
+    };
+
+    var minorityReport = {
+        title: 'Minority Report',
+        details: {
+            summary: 'In a future where a special police unit is able to arrest murderers before ' +
+                'they commit their crimes, an officer from that unit is himself accused of a future murder.',
+            year: 2002,
+            cast: [
+                'Tom Cruise',
+                'Colin Farrell',
+                'Samantha Morton',
+                'Max von Sydow'
+            ]
+        },
+        play: function(startTime, fullScreen, showSubtitles) {}
+    };
+
+    var warOfTheWorlds = {
+        title: 'War of the Worlds',
+        details: {
+            summary: 'As Earth is invaded by alien tripod fighting machines, one family fights for survival.',
+            year: 2005
+        },
+        play: function(fullScreen) {}
+    };
+
+    h.checkImpl(minorityReport, IMovie); // true
+    h.checkImpl(warOfTheWorlds, IMovie); // At key ["play"]: Function does not accept at least 2 parameters
+
+See [examples][examples-link] for more.
+
+[examples-link]: examples/index.html

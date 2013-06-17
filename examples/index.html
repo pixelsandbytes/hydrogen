@@ -67,6 +67,7 @@
             <li><a href="#private-vars">Private Variables</a></li>
             <li><a href="#private-funcs">Private Functions</a></li>
             <li><a href="#override-attached">Overriding Attached Properties</a></li>
+            <li><a href="#check-interfaces">Checking Interfaces</a></li>
         </ol>
     </div>
 
@@ -225,6 +226,77 @@ h.create(Superhero, Hero, {
 </pre>
 
         <div class="output" id="override-attached-code"></div>
+    </section>
+
+    <section>
+        <h2><a name="check-interfaces">Checking Interfaces</a></h2>
+
+<pre class="code">
+var IMovie = {
+    type: 'object',
+    contents: {
+        title: {
+            type: 'string'
+        },
+        details: {
+            type: 'object',
+            contents: {
+                summary: {type: 'string'},
+                year: {type: 'number'}
+            }
+        },
+        play: {
+            type: 'function',
+            minArity: 2
+        }
+    }
+};
+
+var savingPrivateRyan = {
+    title: 'Saving Private Ryan',
+    details: {
+        summary: 'Following the Normandy Landings, a group of U.S. soldiers go behind enemy lines ' +
+            'to retrieve a paratrooper whose brothers have been killed in action.',
+        year: 1998
+    },
+    play: function(startTime, fullScreen) {}
+};
+
+var minorityReport = {
+    title: 'Minority Report',
+    details: {
+        summary: 'In a future where a special police unit is able to arrest murderers before ' +
+            'they commit their crimes, an officer from that unit is himself accused of a future murder.',
+        year: 2002,
+        cast: [
+            'Tom Cruise',
+            'Colin Farrell',
+            'Samantha Morton',
+            'Max von Sydow'
+        ]
+    },
+    play: function(startTime, fullScreen, showSubtitles) {}
+};
+
+var warOfTheWorlds = {
+    title: 'War of the Worlds',
+    details: {
+        summary: 'As Earth is invaded by alien tripod fighting machines, one family fights for survival.',
+        year: 2005
+    },
+    play: function(fullScreen) {}
+};
+
+var warHorse = {
+    title: 'War Horse',
+    details: {
+        year: 2011
+    },
+    play: function(startTime, fullScreen) {}
+};
+</pre>
+
+        <div class="output" id="check-interfaces-code"></div>
     </section>
 
     <script type="text/javascript">
@@ -419,6 +491,78 @@ h.create(Superhero, Hero, {
             println(outputId, "stark.addEnemy('Iron Monger', true);");
             println(outputId, "stark.addEnemy('Justin Hammer');");
             println(outputId, "stark.getDescription(); // " + stark.getDescription());
+
+            /***** Checking Interfaces *****/
+
+            var IMovie = {
+                type: 'object',
+                contents: {
+                    title: {
+                        type: 'string'
+                    },
+                    details: {
+                        type: 'object',
+                        contents: {
+                            summary: {type: 'string'},
+                            year: {type: 'number'}
+                        }
+                    },
+                    play: {
+                        type: 'function',
+                        minArity: 2
+                    }
+                }
+            };
+
+            var savingPrivateRyan = {
+                title: 'Saving Private Ryan',
+                details: {
+                    summary: 'Following the Normandy Landings, a group of U.S. soldiers go behind enemy lines ' +
+                        'to retrieve a paratrooper whose brothers have been killed in action.',
+                    year: 1998
+                },
+                play: function(startTime, fullScreen) {}
+            };
+
+            var minorityReport = {
+                title: 'Minority Report',
+                details: {
+                    summary: 'In a future where a special police unit is able to arrest murderers before ' +
+                        'they commit their crimes, an officer from that unit is himself accused of a future murder.',
+                    year: 2002,
+                    cast: [
+                        'Tom Cruise',
+                        'Colin Farrell',
+                        'Samantha Morton',
+                        'Max von Sydow'
+                    ]
+                },
+                play: function(startTime, fullScreen, showSubtitles) {}
+            };
+
+            var warOfTheWorlds = {
+                title: 'War of the Worlds',
+                details: {
+                    summary: 'As Earth is invaded by alien tripod fighting machines, one family fights for survival.',
+                    year: 2005
+                },
+                play: function(fullScreen) {}
+            };
+
+            var warHorse = {
+                title: 'War Horse',
+                details: {
+                    year: 2011
+                },
+                play: function(startTime, fullScreen) {}
+            };
+
+            var outputId = 'check-interfaces-code';
+
+            println(outputId, "h.checkImpl(savingPrivateRyan, IMovie); // " + h.checkImpl(savingPrivateRyan, IMovie));
+            println(outputId, "h.checkImpl(minorityReport, IMovie); // " + h.checkImpl(minorityReport, IMovie));
+            println(outputId, "h.checkImpl(warOfTheWorlds, IMovie); // " + h.checkImpl(warOfTheWorlds, IMovie));
+            println(outputId, "h.checkImpl(warHorse, IMovie); // " + h.checkImpl(warHorse, IMovie));
 
         }
     </script>

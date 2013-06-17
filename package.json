@@ -10,6 +10,7 @@
     "main": "./lib/hydrogen.js",
     "keywords": [
         "class",
+        "hydrogen",
         "inheritance",
         "inherit",
         "javascript",
